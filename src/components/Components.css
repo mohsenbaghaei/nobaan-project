@@ -1,0 +1,66 @@
+.header {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    height: 6rem;
+    background-color: rgb(245, 245, 245);
+    justify-content: space-around;
+}
+.headerLogo{
+    width: 5rem;
+    height: 5rem;
+}
+.pages{
+    width: 35%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerLink {
+    text-decoration: none;
+    color: black;
+}
+.currentPage {
+    border-bottom: 2px solid rgba(19, 72, 206, 0.87);
+    color: rgb(11, 56, 122);
+}
+.headerIcon{
+    color: rgba(64, 5, 64, 0.727);
+    border-bottom: none;
+    margin-right: 5px;
+}
+.headerDot{
+    display: none;
+    cursor: pointer;
+    
+}
+.showPage{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(245, 245, 245);
+}
+.notShow {
+    display: none;
+}
+.showPageitem{
+    padding: 10px;
+}
+@media screen and (max-width: 768px) {
+    .pages{
+        display: none;
+    }
+    .headerDot{
+        display: block;
+    }
+}
+@media screen and (min-width: 769px) {
+.showPage{
+    display: none;
+}
+}
+@media screen and (max-width: 992px) {
+    .pages{
+        width: 50%;
+    }    
+}
