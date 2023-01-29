@@ -45,6 +45,14 @@
 .showPageitem {
   padding: 10px;
 }
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: darkblue;
+  font-size: 30px;
+  font-weight: bolder;
+}
 @media screen and (max-width: 768px) {
   .pages {
     display: none;
