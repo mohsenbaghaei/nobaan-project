@@ -2,6 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import "./Pages.css";
 import { AiFillCheckCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { changePage } from "../redux/menu/menuSlice";
 
 const Users = () => {
   const phoneNumberRef = useRef<HTMLInputElement>(null);
@@ -9,6 +11,7 @@ const Users = () => {
   const [validPhoneNumber, setValidPhoneNumber] = useState(false);
   const [errMsg, setErrmsg] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     phoneNumberRef.current?.focus();
@@ -28,17 +31,14 @@ const Users = () => {
       setPhoneNumber("");
       setValidPhoneNumber(false);
       navigate("/verification");
+      dispatch(changePage("verification"));
     } else {
       setErrmsg("Phone number length must be 11");
     }
   };
   return (
     <div className="verification">
-        {errMsg ? (
-            <div className="err">
-                {errMsg}
-            </div>
-        ) : ''}
+      {errMsg ? <div className="err">{errMsg}</div> : ""}
       <form onSubmit={(event) => handlePhoneNumber(event)}>
         <label htmlFor="phoneNumber">
           Enter your Phone Number :
@@ -55,13 +55,15 @@ const Users = () => {
           id="phoneNumber"
           maxLength={11}
           value={phoneNumber}
-          className="phoneNumber"
+          className="input"
           placeholder="09030737899"
           onChange={(e) => setPhoneNumber(e.target.value)}
         />
         <br />
         <br />
-        <button type="submit" className="verify">Submit</button>
+        <button type="submit" className="verify">
+          Submit
+        </button>
       </form>
     </div>
   );

@@ -1,5 +1,8 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import "./Pages.css";
+import { useDispatch } from "react-redux";
+import { changePage } from "../redux/menu/menuSlice";
 
 const Verification = () => {
   const [verificationCode1, setVerificationCode1] = useState("");
@@ -11,6 +14,7 @@ const Verification = () => {
   const inputRef3 = useRef<HTMLInputElement>(null);
   const inputRef4 = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     inputRef1.current?.focus();
@@ -29,7 +33,7 @@ const Verification = () => {
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     navigate("/");
-    console.log("object");
+    dispatch(changePage("home"));
   };
 
   const handleClear = () => {
@@ -100,8 +104,10 @@ const Verification = () => {
       <button className="clear" onClick={handleClear}>
         Clear
       </button>
-      <br/>
-      <Link to='/users' className="verificationLink">Correct phone number</Link>
+      <br />
+      <Link to="/users" className="verificationLink">
+        Correct phone number
+      </Link>
     </div>
   );
 };

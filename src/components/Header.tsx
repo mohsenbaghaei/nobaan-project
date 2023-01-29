@@ -6,13 +6,16 @@ import { HiHome } from "react-icons/hi";
 import { AiOutlineShop, AiOutlineMenu } from "react-icons/ai";
 import { BiUserCircle } from "react-icons/bi";
 import { GoUnverified } from "react-icons/go";
+import { useSelector, useDispatch } from "react-redux";
+import { CurrentPage, changePage } from "../redux/menu/menuSlice";
 
 const Header = () => {
-  const [currentPage, setCurrentPage] = useState("home");
   const [headerDot, setHeaderDot] = useState(false);
+  const currentPage = useSelector(CurrentPage);
+  const dispatch = useDispatch();
 
   const handlePage = (page: string) => {
-    setCurrentPage(page);
+    dispatch(changePage(page));
   };
 
   return (
