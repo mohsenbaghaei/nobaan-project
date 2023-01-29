@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Pages.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { changePage } from "../redux/menu/menuSlice";
+import { Telephone } from "../redux/textField/textFieldSlice";
 
 const Verification = () => {
   const [verificationCode1, setVerificationCode1] = useState("");
@@ -15,6 +16,7 @@ const Verification = () => {
   const inputRef4 = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const telephone = useSelector(Telephone);
 
   useEffect(() => {
     inputRef1.current?.focus();
@@ -47,14 +49,18 @@ const Verification = () => {
   return (
     <div className="verification">
       <form onSubmit={(event) => handleSubmit(event)} className="verification">
-        <label htmlFor="code">Enter Your 4 digits verification code</label>
+        <label htmlFor="code">
+          Enter Your 4 digits verification code
+          {telephone ? <span> we send to {telephone} number</span> : ""}
+        </label>
         <div className="code">
           <br />
           <input
             ref={inputRef1}
             maxLength={1}
             id="code"
-            type="tel"
+            type="number"
+            pattern="[0-9]"
             className="digit"
             value={verificationCode1}
             onChange={(e) => setVerificationCode1(e.target.value)}
@@ -62,23 +68,26 @@ const Verification = () => {
           <input
             ref={inputRef2}
             maxLength={1}
-            type="tel"
+            type="number"
             className="digit"
+            pattern="[0-9]"
             value={verificationCode2}
             onChange={(e) => setVerificationCode2(e.target.value)}
           />
           <input
             ref={inputRef3}
             maxLength={1}
-            type="tel"
+            type="number"
             className="digit"
+            pattern="[0-9]"
             value={verificationCode3}
             onChange={(e) => setVerificationCode3(e.target.value)}
           />
           <input
             ref={inputRef4}
             maxLength={1}
-            type="tel"
+            type="number"
+            pattern="[0-9]"
             className="digit"
             value={verificationCode4}
             onChange={(e) => setVerificationCode4(e.target.value)}
@@ -105,7 +114,11 @@ const Verification = () => {
         Clear
       </button>
       <br />
-      <Link to="/users" className="verificationLink">
+      <Link
+        to="/users"
+        className="verificationLink"
+        onClick={() => dispatch(changePage("users"))}
+      >
         Correct phone number
       </Link>
     </div>

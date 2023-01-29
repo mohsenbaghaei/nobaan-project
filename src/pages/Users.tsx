@@ -4,6 +4,7 @@ import { AiFillCheckCircle } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { changePage } from "../redux/menu/menuSlice";
+import { telephoneNumber } from "../redux/textField/textFieldSlice";
 
 const Users = () => {
   const phoneNumberRef = useRef<HTMLInputElement>(null);
@@ -15,6 +16,7 @@ const Users = () => {
 
   useEffect(() => {
     phoneNumberRef.current?.focus();
+    dispatch(telephoneNumber(""));
   }, []);
   useEffect(() => {
     setErrmsg("");
@@ -28,10 +30,10 @@ const Users = () => {
   const handlePhoneNumber = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (validPhoneNumber) {
-      setPhoneNumber("");
-      setValidPhoneNumber(false);
-      navigate("/verification");
       dispatch(changePage("verification"));
+      dispatch(telephoneNumber(phoneNumber));
+      setPhoneNumber("");
+      navigate("/verification");
     } else {
       setErrmsg("Phone number length must be 11");
     }

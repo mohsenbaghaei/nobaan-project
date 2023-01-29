@@ -15,6 +15,8 @@ const Home = () => {
       setShowDialog(true);
     } else if (event.ctrlKey && event.shiftKey && event.keyCode === 114) {
       inputRef.current?.focus();
+    } else if (event.ctrlKey && event.shiftKey && event.keyCode === 115) {
+      setShowDialog(false);
     }
   }, []);
 
@@ -51,6 +53,9 @@ const Home = () => {
             onChange={(e) => setTextField(e.target.value)}
             placeholder="write your Message"
           />
+
+          {/* if we want to show the text instantly we use onChange={(e) => dispatch(getTextField(e.target.value))}*/}
+
           <button className="showMessage" onClick={handleTextField}>
             Show my Message
           </button>
@@ -58,6 +63,7 @@ const Home = () => {
             Clear my Message
           </button>
           {text}
+          <p>To hide the Dialog please press ctrl+shift+f4</p>
         </>
       ) : (
         ""
