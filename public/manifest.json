@@ -8,14 +8,16 @@
       "type": "image/x-icon"
     },
     {
-      "src": "../src/assets/image/nobaan.png",
+      "src": "nobaan.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x192",
+      "purpose": "maskable"
     },
     {
-      "src": "../src/assets/image/nobaan.png",
+      "src": "nobaan.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x512",
+      "purpose": "any"
     }
   ],
   "start_url": ".",
