@@ -1,8 +1,13 @@
+@font-face {
+  font-family: yekan;
+  src: url(./assets//font/Yekan.ttf);
+}
 body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-size: 20px;
+  font-family: yekan;
 }
 
 .container {
